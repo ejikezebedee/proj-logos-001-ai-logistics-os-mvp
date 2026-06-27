@@ -20,6 +20,9 @@ This repo preserves the current product blueprint for building an industrial-gra
 ## Current Contents
 
 - `PROJ-LOGOS-001-ai-logistics-os-mvp.md` - full MVP blueprint, system explanation, data model, workflows, architecture, and staged build plan.
+- `INDUSTRIAL_BACKEND_REQUIREMENTS.md` - full backend requirements for the industrial-grade AI-agentic Logistics OS.
+- `INDUSTRIAL_FRONTEND_REQUIREMENTS.md` - full frontend requirements for all portals, dashboards, roles, and workflows.
+- `EXECUTION_PLAN.md` - staged development plan from architecture through pilot readiness.
 
 ## Initial Target
 
@@ -28,3 +31,7 @@ The recommended first vertical is oil/fuel logistics or fleet dispatch, because 
 ## Build Principle
 
 Build the logistics workflow first. Add AI where it improves dispatch decisions, risk detection, exception handling, customer communication, reporting, security, and cost control.
+
+## Non-Negotiable Direction
+
+This must not become a generic delivery app. It must become an industrial-grade AI-agentic Logistics Operating System with a first-class Logistic Disponent role, strict state machines, warehouse logic, dispatch control, tracking, escrow/ledger, returns, disputes, AI governance, approval gates, audit logs, and production-ready security foundations.
