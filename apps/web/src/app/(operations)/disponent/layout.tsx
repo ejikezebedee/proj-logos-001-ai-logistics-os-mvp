@@ -1,13 +1,7 @@
-import { redirect } from "next/navigation";
 import { DisponentShell } from "@/components/layout/disponent-shell";
-import { hasPermission } from "@/config/permissions";
-import { getSession } from "@/lib/auth/session";
+import { requirePermission } from "@/lib/auth/session";
 
 export default async function DisponentLayout({ children }: { children: React.ReactNode }) {
-  const session = await getSession();
-  if (!session || !hasPermission(session.roles, "disponent:dashboard:view")) {
-    redirect("/access-denied");
-  }
-
+  const session = await requirePermission("disponent:dashboard:view");
   return <DisponentShell displayName={session.displayName} roles={session.roles}>{children}</DisponentShell>;
 }

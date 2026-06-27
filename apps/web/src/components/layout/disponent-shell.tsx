@@ -7,6 +7,7 @@ import { useState, type ReactNode } from "react";
 import { disponentNavigation } from "@/config/navigation";
 import { hasPermission, type Role } from "@/config/permissions";
 import { cn } from "@/lib/cn";
+import { LogoutButton } from "@/components/auth/session-actions";
 
 function Navigation({
   roles,
@@ -121,7 +122,8 @@ export function DisponentShell({
           >
             <Bell size={19} />
           </button>
-          <div className="operator-identity"><span>{displayName}</span><small>Foundation session</small></div>
+          <LogoutButton compact />
+          <div className="operator-identity"><span>{displayName}</span><small>Secure session</small></div>
         </header>
 
         {notificationsOpen && (

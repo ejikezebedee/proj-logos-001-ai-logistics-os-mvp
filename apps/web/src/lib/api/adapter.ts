@@ -42,8 +42,12 @@ export function createProductionApiAdapter(baseUrl: string): ApiAdapter {
       });
 
       if (!response.ok) {
+        const errorBody = await response.json().catch(() => null) as { message?: unknown } | null;
+        const message = typeof errorBody?.message === "string"
+          ? errorBody.message
+          : `The logistics API returned status ${response.status}.`;
         throw new ApiError(
-          `The logistics API returned status ${response.status}.`,
+          message,
           errorKindForStatus(response.status),
           response.status,
           response.headers.get("x-correlation-id") ?? undefined,

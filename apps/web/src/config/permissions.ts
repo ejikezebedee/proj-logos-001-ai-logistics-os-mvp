@@ -75,3 +75,29 @@ export function getPermissionsForRoles(userRoles: readonly Role[]): Set<Permissi
 export function hasPermission(userRoles: readonly Role[], permission: Permission): boolean {
   return getPermissionsForRoles(userRoles).has(permission);
 }
+
+export interface ProtectedRouteRule {
+  readonly prefix: `/${string}`;
+  readonly permission: Permission;
+}
+
+export const protectedRouteRules: readonly ProtectedRouteRule[] = [
+  { prefix: "/customer", permission: "customer:portal:view" },
+  { prefix: "/merchant", permission: "merchant:portal:view" },
+  { prefix: "/warehouse", permission: "warehouse:tasks:view" },
+  { prefix: "/driver", permission: "driver:jobs:view" },
+  { prefix: "/fleet", permission: "fleet:manage" },
+  { prefix: "/carrier", permission: "carrier:assignments:view" },
+  { prefix: "/forwarder", permission: "forwarder:shipments:view" },
+  { prefix: "/disponent", permission: "disponent:dashboard:view" },
+  { prefix: "/support", permission: "support:cases:manage" },
+  { prefix: "/finance", permission: "finance:records:view" },
+  { prefix: "/compliance", permission: "compliance:reviews:manage" },
+  { prefix: "/admin", permission: "admin:system:manage" },
+] as const;
+
+export function permissionForPath(pathname: string): Permission | null {
+  return protectedRouteRules.find(
+    ({ prefix }) => pathname === prefix || pathname.startsWith(`${prefix}/`),
+  )?.permission ?? null;
+}

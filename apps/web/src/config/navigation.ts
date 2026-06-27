@@ -25,6 +25,31 @@ export const roleHome: Record<Role, string> = {
   super_admin: "/admin",
 };
 
+export function homeForRoles(userRoles: readonly Role[]): string {
+  const primaryRole = userRoles.find((role) => role in roleHome);
+  return primaryRole ? roleHome[primaryRole] : "/access-denied";
+}
+
+export interface WorkspaceDefinition {
+  readonly label: string;
+  readonly description: string;
+  readonly permission: Permission;
+}
+
+export const workspaceDefinitions: Readonly<Record<string, WorkspaceDefinition>> = {
+  customer: { label: "Customer dashboard", description: "Orders, tracking, escrow, returns, and support.", permission: "customer:portal:view" },
+  merchant: { label: "Merchant and shipper portal", description: "Products, inventory, orders, pickups, labels, and documents.", permission: "merchant:portal:view" },
+  warehouse: { label: "Warehouse operations", description: "Pick, scan, pack, stage, inspect returns, and control inventory.", permission: "warehouse:tasks:view" },
+  driver: { label: "Driver workspace", description: "Jobs, pickup, route execution, delivery proof, and support.", permission: "driver:jobs:view" },
+  fleet: { label: "Fleet control", description: "Vehicles, drivers, maintenance, documents, capacity, and utilization.", permission: "fleet:manage" },
+  carrier: { label: "Carrier portal", description: "Assignments, available capacity, documents, and performance.", permission: "carrier:assignments:view" },
+  forwarder: { label: "Freight forwarder workspace", description: "Shipments, consolidations, carriers, documents, and exceptions.", permission: "forwarder:shipments:view" },
+  support: { label: "Support operations", description: "Tickets, delivery issues, returns, disputes, evidence, and escalation.", permission: "support:cases:manage" },
+  finance: { label: "Finance control", description: "Payments, escrow, immutable ledger records, payouts, and approvals.", permission: "finance:records:view" },
+  compliance: { label: "Compliance control", description: "KYC, documents, restricted items, risk, privacy, and security events.", permission: "compliance:reviews:manage" },
+  admin: { label: "System administration", description: "Users, roles, organizations, settings, audit, AI, and system health.", permission: "admin:system:manage" },
+};
+
 export const disponentNavigation: readonly NavigationItem[] = [
   { label: "Command overview", href: "/disponent", permission: "disponent:dashboard:view", enabled: true },
   { label: "Ready-for-dispatch", href: "/disponent/ready-queue", permission: "disponent:queue:view", enabled: false },
