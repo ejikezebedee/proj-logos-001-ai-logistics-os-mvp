@@ -23,6 +23,8 @@ This repo preserves the current product blueprint for building an industrial-gra
 - `INDUSTRIAL_BACKEND_REQUIREMENTS.md` - full backend requirements for the industrial-grade AI-agentic Logistics OS.
 - `INDUSTRIAL_FRONTEND_REQUIREMENTS.md` - full frontend requirements for all portals, dashboards, roles, and workflows.
 - `EXECUTION_PLAN.md` - staged development plan from architecture through pilot readiness.
+- `CODEX_COLLABORATION_WORKFLOW.md` - how Emeka/Codex should execute, verify, remember, commit, push, and report each step.
+- `CODEX_UI_BUILD_PROMPT.md` - copy-ready Codex prompt for building the industrial frontend UI and user workflow/form guide.
 
 ## Initial Target
 
