@@ -15,7 +15,7 @@ npm run build
 npm run dev
 ```
 
-The development server opens the foundation route at `http://localhost:3000/disponent`.
+The development server opens the Disponent console at `http://localhost:3000/disponent`. The first operational vertical slice is available at `http://localhost:3000/disponent/ready-queue`.
 
 Authentication uses a same-origin BFF. Access, refresh, session, and 2FA challenge values are stored only in `HttpOnly`, `SameSite=Strict` cookies. Copy `.env.example` to an ignored local file and set a unique `AUTH_SESSION_SECRET` of at least 32 characters before running authentication flows.
 
@@ -32,8 +32,10 @@ For explicit local mock mode, the email prefix selects a role (for example `cust
 - login, customer registration, password recovery, and 2FA-ready forms
 - proxy and server-component permission enforcement with role-home redirects
 - shared loading, empty, error, retry, and permission-denied foundations
+- reusable operational tables, filters, command bars, status badges, drawers, and confirmation dialogs
+- permission-scoped ready-for-dispatch queue with filtering, sorting, selection, readiness detail, and explicit command gates
 - Vitest and Testing Library baseline
 
-The production auth service expects the backend `/auth` contract described by `src/features/auth/types.ts`. Operational routes marked **Defined** are intentionally non-interactive in the current verified steps; they are not dead links or claims of completed functionality.
+The production auth service expects the backend `/auth` contract described by `src/features/auth/types.ts`. The ready queue adapter owns the production `/disponent/ready-queue` mapping and validates its response before exposing the stable UI contract. Operational routes marked **Defined** are intentionally non-interactive in the current verified steps; they are not dead links or claims of completed functionality. Tour planning and resource assignment remain visibly disabled until their typed command and audit contracts are connected.
 
 Copy `.env.example` to a local ignored environment file only when configuration is needed. Never place secrets in `NEXT_PUBLIC_*` variables or commit local environment files.

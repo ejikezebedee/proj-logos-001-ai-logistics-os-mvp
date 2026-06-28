@@ -17,7 +17,7 @@ function redirectTo(request: NextRequest, pathname: string): NextResponse {
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  if (pathname.startsWith("/api/auth")) return NextResponse.next();
+  if (pathname.startsWith("/api/")) return NextResponse.next();
 
   const token = request.cookies.get(authCookies.session)?.value;
   const payload = token ? await verifyToken(token, "session") : null;

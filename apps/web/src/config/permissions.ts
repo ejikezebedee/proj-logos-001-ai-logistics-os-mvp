@@ -89,6 +89,7 @@ export const protectedRouteRules: readonly ProtectedRouteRule[] = [
   { prefix: "/fleet", permission: "fleet:manage" },
   { prefix: "/carrier", permission: "carrier:assignments:view" },
   { prefix: "/forwarder", permission: "forwarder:shipments:view" },
+  { prefix: "/disponent/ready-queue", permission: "disponent:queue:view" },
   { prefix: "/disponent", permission: "disponent:dashboard:view" },
   { prefix: "/support", permission: "support:cases:manage" },
   { prefix: "/finance", permission: "finance:records:view" },

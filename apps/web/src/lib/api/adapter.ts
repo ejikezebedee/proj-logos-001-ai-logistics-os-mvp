@@ -23,7 +23,10 @@ export interface ApiAdapter {
   request<TResponse, TBody = unknown>(request: ApiRequest<TBody>): Promise<TResponse>;
 }
 
-export function createProductionApiAdapter(baseUrl: string): ApiAdapter {
+export function createProductionApiAdapter(
+  baseUrl: string,
+  options: { readonly accessToken?: string } = {},
+): ApiAdapter {
   const normalizedBaseUrl = baseUrl.replace(/\/$/, "");
 
   return {
@@ -33,6 +36,7 @@ export function createProductionApiAdapter(baseUrl: string): ApiAdapter {
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
+          ...(options.accessToken ? { Authorization: `Bearer ${options.accessToken}` } : {}),
           ...(request.idempotencyKey ? { "Idempotency-Key": request.idempotencyKey } : {}),
         },
         body: request.body === undefined ? undefined : JSON.stringify(request.body),

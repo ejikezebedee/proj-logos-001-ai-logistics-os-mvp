@@ -52,7 +52,7 @@ export const workspaceDefinitions: Readonly<Record<string, WorkspaceDefinition>>
 
 export const disponentNavigation: readonly NavigationItem[] = [
   { label: "Command overview", href: "/disponent", permission: "disponent:dashboard:view", enabled: true },
-  { label: "Ready-for-dispatch", href: "/disponent/ready-queue", permission: "disponent:queue:view", enabled: false },
+  { label: "Ready-for-dispatch", href: "/disponent/ready-queue", permission: "disponent:queue:view", enabled: true },
   { label: "Unassigned shipments", href: "/disponent/unassigned", permission: "disponent:queue:view", enabled: false },
   { label: "AI tour recommendations", href: "/disponent/ai-recommendations", permission: "disponent:tours:plan", enabled: false },
   { label: "Tour planning board", href: "/disponent/tours", permission: "disponent:tours:plan", enabled: false },

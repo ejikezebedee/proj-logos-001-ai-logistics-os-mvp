@@ -24,7 +24,15 @@ describe("role and navigation foundation", () => {
 
   it("resolves protected paths through the shared permission registry", () => {
     expect(permissionForPath("/customer/orders")).toBe("customer:portal:view");
+    expect(permissionForPath("/disponent/ready-queue")).toBe("disponent:queue:view");
     expect(permissionForPath("/disponent/tours/active")).toBe("disponent:dashboard:view");
     expect(permissionForPath("/login")).toBeNull();
+  });
+
+  it("keeps queue access scoped to operational roles", () => {
+    const permission = permissionForPath("/disponent/ready-queue");
+    expect(permission).toBe("disponent:queue:view");
+    expect(hasPermission(["logistic_disponent"], permission!)).toBe(true);
+    expect(hasPermission(["customer"], permission!)).toBe(false);
   });
 });
